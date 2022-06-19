@@ -1,20 +1,26 @@
 name: Releases
 
 on: 
-  push:
-    tags:
-    - '*'
+  workflow_dispatch:
 
 jobs:
-
   build:
     runs-on: ubuntu-latest
     permissions:
       contents: write
     steps:
-    - uses: actions/checkout@v2
-    - uses: ncipollo/release-action@v1
-      with:
-        artifacts: "release.tar.gz,foo/*.txt"
-        bodyFile: "body.md"
-        token: ${{ secrets.GITHUB_TOKEN }}
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 160
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'yarn'
+      - run: yarn install --frozen-lockfile
+      - uses: ncipollo/release-action@v1
+        with:
+          artifacts: "package-js-*.tgz"
+          bodyFile: "README.md"
+          token: ${{ secrets.GITHUB_TOKEN }}

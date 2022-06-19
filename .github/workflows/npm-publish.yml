@@ -5,8 +5,8 @@ name: Node.js NPM Package
 
 on:
   workflow_dispatch:
-#  release:
-#    types: [created]
+  release:
+    types: [created]
 
 jobs:
   build:

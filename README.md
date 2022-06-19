@@ -59,5 +59,5 @@ the inline package-js instance can be easily added to your javascript file and i
 A COMMENT OR IN THE LICENSE FILE) THAT YOU ARE USING PACKAGE-JS INLINE LIBRARY**
 
 
-Inline Library: https://github.com/shakelang/package-js/blob/master/inline-lib/index.js
-Minified Inline Library: https://github.com/shakelang/package-js/blob/master/inline-lib/index.min.js
+- Inline Library: https://github.com/shakelang/package-js/blob/master/inline-lib/index.js
+- Minified Inline Library: https://github.com/shakelang/package-js/blob/master/inline-lib/index.min.js

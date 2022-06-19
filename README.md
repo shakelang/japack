@@ -6,7 +6,7 @@ java-style package storage in javascript.
 ## Usage
 
 ```javascript
-import { pImport, add as addPackage } from 'package-js';
+import { pImport, add as addPackage, require as requireFunction } from 'package-js';
 ```
 
 ### Registering a package
@@ -15,7 +15,7 @@ You can register a package by calling the `add` function.
 
 ```javascript
 addPackage({
-    "io.github.shakelang.packagejs.test" : it => it.require(`${__dirname}/test.js`)
+    "io.github.shakelang.packagejs.test" : it => requireFunction(`${__dirname}/test.js`)
 });
 ```
 
@@ -37,7 +37,7 @@ the packages of the global package-js host and not store the packages in the glo
 import { createPackageSystem } from 'package-js';
 
 const packages = createPackageSystem({
-    "io.github.shakelang.packagejs.test" : it => it.require(`${__dirname}/test.js`)
+    "io.github.shakelang.packagejs.test" : requireFunction(`${__dirname}/test.js`)
 });
 ```
 

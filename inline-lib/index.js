@@ -45,21 +45,18 @@ module.exports = global.packageJsLibrary =
             current = current[parts[i]];
           }
           if (typeof contents === "function") {
-            Object.defineProperty(current, "$it", {
-              get: function () {
-                const value = contents();
-                Object.defineProperty(current, "$it", { value: value });
-                return value;
-              },
-              configurable: true,
-            });
+            current.$it = () => {
+              const result = contents();
+              contents.$it = () => result;
+              return result;
+            };
           } else deepMerge(current, resolvePackages(contents[pkg]));
         });
         return resolvedPackages;
       }
 
       function createPackageSystem(description) {
-        const packages = description?.packages || {};
+        const packages = (description || {}).packages || {};
         const resolved = resolvePackages(packages);
         let it;
         return (it = {
@@ -71,7 +68,8 @@ module.exports = global.packageJsLibrary =
               if (!current[parts[i]]) return undefined;
               current = current[parts[i]];
             }
-            return current["$it"];
+            if (!current.$it) return undefined;
+            return current.$it();
           },
           add(packages) {
             deepMerge(it.packages, resolvePackages(packages));
@@ -85,6 +83,7 @@ module.exports = global.packageJsLibrary =
         createPackageSystem,
         require: (path) => () => require(`${path}`),
         object: (obj) => () => obj,
+        formatVersion: 1,
       });
     }
 

@@ -8,5 +8,11 @@
   "contributors": [
     "Nicolas Schmidt <https://github.com/nsc-de/>"
   ],
-  "license": "BSD-2-Clause"
+  "license": "BSD-2-Clause",
+  "scripts": {
+    "test": "mocha"
+  },
+  "devDependencies": {
+    "mocha": "^2.2.5"
+  }
 }

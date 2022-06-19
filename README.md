@@ -57,3 +57,7 @@ the inline package-js instance can be easily added to your javascript file and i
 
 **Keep in mind that the inline version is also licensed under the BSD-2 Clause license. YOU HAVE TO INCLUDE A NOTE (AS 
 A COMMENT OR IN THE LICENSE FILE) THAT YOU ARE USING PACKAGE-JS INLINE LIBRARY**
+
+
+Inline Library: https://github.com/shakelang/package-js/blob/master/inline-lib/index.js
+Minified Inline Library: https://github.com/shakelang/package-js/blob/master/inline-lib/index.min.js

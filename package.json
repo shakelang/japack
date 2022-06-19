@@ -3,7 +3,10 @@
   "version": "0.1.0",
   "description": "A lightweight javascript library to represent a java-style package structure",
   "main": "lib/index.js",
-  "repository": "https://github.com/shakelang/shake",
-  "author": "Nicolas Schmidt <https://github.com/nsc-de/>",
+  "repository": "https://github.com/shakelang/package-js",
+  "author": "Shake Programming Language <https://github.com/shakelang/> (https://shakelang.github.io/)",
+  "contributors": [
+    "Nicolas Schmidt <https://github.com/nsc-de/>"
+  ],
   "license": "BSD-2-Clause"
 }

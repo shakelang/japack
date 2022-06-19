@@ -2,3 +2,4 @@ example.js
 test.js
 inline-lib
 .github
+yarn.lock

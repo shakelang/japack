@@ -3,7 +3,7 @@ module.exports = global.packageJsLibrary =
   (function Module() {
     function required_module() {
       try {
-        return require("pack-js");
+        return require("japack");
       } catch (err) {
         if (err.code === "MODULE_NOT_FOUND") return false;
         throw err;

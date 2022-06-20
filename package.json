@@ -1,5 +1,5 @@
 {
-  "name": "pack-js",
+  "name": "japack",
   "version": "0.1.0",
   "description": "A lightweight javascript library to represent a java-style package structure",
   "main": "lib/index.js",

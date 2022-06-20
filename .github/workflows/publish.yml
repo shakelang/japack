@@ -1,10 +1,10 @@
 name: Create Release
 
-on: 
+on:
   workflow_dispatch:
   push:
     tags:
-    - 'release-*'
+      - "release-*"
 
 jobs:
   build:
@@ -16,8 +16,8 @@ jobs:
           node-version: 16
       - run: yarn install --frozen-lockfile
       - run: yarn test
-      
-  publish:
+
+  create-release:
     needs: build
     runs-on: ubuntu-latest
     permissions:
@@ -31,7 +31,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
-          cache: 'yarn'
+          cache: "yarn"
       - run: yarn install --frozen-lockfile
       - run: yarn pack
       - uses: ncipollo/release-action@v1
@@ -39,24 +39,23 @@ jobs:
           artifacts: "package-js-*.tgz"
           bodyFile: "README.md"
           token: ${{ secrets.GITHUB_TOKEN }}
-  
 
   publish-npm:
-    needs: build
+    needs: create-release
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
-          node-version: 16
-          registry-url: https://registry.npmjs.org/
+          node-version: 16.x
       - run: yarn install --frozen-lockfile
-      - run: yarn publish
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
-  
+      - uses: JS-DevTools/npm-publish@v1
+        with:
+          token: ${{secrets.NPM_TOKEN}}
+          registry:  https://registry.npmjs.org/
+
   publish-gpr:
-    needs: build
+    needs: create-release
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -65,9 +64,9 @@ jobs:
       - uses: actions/checkout@v3
       - uses: actions/setup-node@v3
         with:
-          node-version: 16
-          registry-url: https://npm.pkg.github.com/
+          node-version: 16.x
       - run: yarn install --frozen-lockfile
-      - run: npm publish
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+      - uses: JS-DevTools/npm-publish@v1
+        with:
+          token: ${{secrets.GITHUB_TOKEN}}
+          registry: https://npm.pkg.github.com/

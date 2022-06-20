@@ -3,7 +3,7 @@ module.exports = global.packageJsLibrary =
   (function Module() {
     function required_module() {
       try {
-        return require("pkg-js");
+        return require("pack-js");
       } catch (err) {
         if (err.code === "MODULE_NOT_FOUND") return false;
         throw err;

@@ -48,13 +48,11 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 16.x
-          registry-url: https://registry.npmjs.org/
-          always-auth: true
       - run: yarn install --frozen-lockfile
-      - run: echo "//registry.npmjs.org/:_authToken=${NODE_AUTH_TOKEN}" > ~/.npmrc && npm publish
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
-          NPM_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+      - uses: JS-DevTools/npm-publish@v1
+        with:
+          token: ${{secrets.NPM_TOKEN}}
+          registry:  https://registry.npmjs.org/
 
   publish-gpr:
     needs: create-release
@@ -67,10 +65,8 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 16.x
-          registry-url: https://npm.pkg.github.com/
-          always-auth: true
       - run: yarn install --frozen-lockfile
-      - run: echo "//npm.pkg.github.com/:_authToken=${NODE_AUTH_TOKEN}" > ~/.npmrc && npm publish
-        env:
-          NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
-          NPM_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+      - uses: JS-DevTools/npm-publish@v1
+        with:
+          token: ${{secrets.GITHUB_TOKEN}}
+          registry: https://npm.pkg.github.com/

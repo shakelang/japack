@@ -68,9 +68,5 @@ is that japack will use the installed `japack` version instead of the inline ver
 with the inline version you can import packages from other inline `japack` instances. The compressed version of
 the inline japack instance can be easily added to your javascript file and is only about 1000 characters long.
 
-**Keep in mind that the inline version is also licensed under the BSD-2 Clause license. YOU HAVE TO INCLUDE A NOTE (AS 
-A COMMENT OR IN THE LICENSE FILE) THAT YOU ARE USING japack INLINE LIBRARY**
-
-
 - Inline Library: https://github.com/shakelang/japack/blob/master/inline-lib/index.js
 - Minified Inline Library: https://github.com/shakelang/japack/blob/master/inline-lib/index.min.js

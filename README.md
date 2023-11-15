@@ -7,13 +7,13 @@
 npm
 
 ```sh
-npm install pack-js
+npm install japack
 ```
 
 yarn
 
 ```sh
-yarn add pack-js
+yarn add japack
 ```
 
 ## Usage
